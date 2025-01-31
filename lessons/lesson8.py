@@ -116,3 +116,16 @@ def alfa_users():
         
 
 alfa_users()
+
+# представление самой высокой оценки
+def high_grade_views():
+    cursor.execute("""
+        CREATE VIEW IF NOT EXISTS high_grade AS
+        SELECT subject, MAX(grade) AS max_grade
+        FROM grades
+        GROUP BY subject
+                   """)
+    db.commit()
+    print("View high_grade создано или обновлено")
+    
+high_grade_views()
